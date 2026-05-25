@@ -3,8 +3,10 @@ entries:
   - 9f425664259a
   - c9c9976149dd
   - ccebe6bb966b
+  - 1a6bf3c00390
 aliases:
   - source-airports
   - source-flights
   - source-carriers
   - source-aircraft
+  - source-aircraft_models

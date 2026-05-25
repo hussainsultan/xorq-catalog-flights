@@ -1,0 +1,52 @@
+md5sum: 8d2751c2d3a82dfec052434da3ce659c
+backends:
+  - xorq_datafusion
+expr_metadata:
+  kind: source
+  schema_out:
+    aircraft_model_code: string
+    manufacturer: string
+    model: string
+    aircraft_type_id: int64
+    aircraft_engine_type_id: int64
+    aircraft_category_id: int64
+    amateur: int64
+    engines: int64
+    seats: int64
+    weight: int64
+    speed: int64
+  cache_keys:
+    key: letsql_cache-snapshot-1fad6792ba1c211860c3669429e547e1
+    relative_path: parquet
+  sql_queries:
+    - - main
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "aircraft_models"
+    - - aircraft_models
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "aircraft_models"
+  lineage:
+    nodes:
+      - id: "0"
+        type: Read
+        label: Read
+        schema:
+          aircraft_model_code: string
+          manufacturer: string
+          model: string
+          aircraft_type_id: int64
+          aircraft_engine_type_id: int64
+          aircraft_category_id: int64
+          amateur: int64
+          engines: int64
+          seats: int64
+          weight: int64
+          speed: int64
+    edges: []
+    root: "0"
