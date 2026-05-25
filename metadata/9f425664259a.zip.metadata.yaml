@@ -1,0 +1,62 @@
+md5sum: da4d91ad32e1676804c2466356ab877c
+backends:
+  - xorq_datafusion
+expr_metadata:
+  kind: source
+  schema_out:
+    carrier: string
+    origin: string
+    destination: string
+    flight_num: string
+    flight_time: int64
+    tail_num: string
+    dep_time: timestamp(6)
+    arr_time: timestamp(6)
+    dep_delay: int64
+    arr_delay: int64
+    taxi_out: int64
+    taxi_in: int64
+    distance: int64
+    cancelled: string
+    diverted: string
+    id2: int64
+  cache_keys:
+    key: letsql_cache-snapshot-e31f233db99c6d0955f4beff38fa79e2
+    relative_path: parquet
+  sql_queries:
+    - - main
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "flights"
+    - - flights
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "flights"
+  lineage:
+    nodes:
+      - id: "0"
+        type: Read
+        label: Read
+        schema:
+          carrier: string
+          origin: string
+          destination: string
+          flight_num: string
+          flight_time: int64
+          tail_num: string
+          dep_time: timestamp(6)
+          arr_time: timestamp(6)
+          dep_delay: int64
+          arr_delay: int64
+          taxi_out: int64
+          taxi_in: int64
+          distance: int64
+          cancelled: string
+          diverted: string
+          id2: int64
+    edges: []
+    root: "0"
