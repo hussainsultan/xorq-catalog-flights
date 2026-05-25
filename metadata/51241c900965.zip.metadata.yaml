@@ -1,0 +1,237 @@
+md5sum: d8806c712dfcdca4927a32c2b958e340
+backends:
+  - xorq_datafusion
+  - xorq_datafusion
+expr_metadata:
+  kind: composed
+  schema_out:
+    airport: string
+    total_flights: int64
+  root_tag: catalog-code
+  cache_keys:
+    key: letsql_cache-snapshot-d22bf8dc8aa0338e4d2cf5df6e0dfa7b
+    relative_path: parquet
+  composed_from:
+    - entry_name: 9f425664259a
+      alias: source-flights
+      kind: source
+  sql_queries:
+    - - main
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM (
+          SELECT
+            "t3"."airport",
+            COUNT(*) AS "total_flights"
+          FROM (
+            SELECT
+              "t3"."airport"
+            FROM (
+              SELECT
+                *
+              FROM (
+                SELECT
+                  "t0"."origin" AS "airport"
+                FROM "ibis_rbr-placeholder_gotjwc3eljaezb" AS "t0"
+              ) AS "t1"
+              UNION ALL
+              SELECT
+                *
+              FROM (
+                SELECT
+                  "t0"."destination" AS "airport"
+                FROM "ibis_rbr-placeholder_gotjwc3eljaezb" AS "t0"
+              ) AS "t2"
+            ) AS "t3"
+          ) AS t3
+          GROUP BY
+            "t3"."airport"
+        ) AS "t4"
+        ORDER BY
+          "t4"."total_flights" DESC NULLS LAST
+        LIMIT 2
+    - - ibis_rbr-placeholder_gotjwc3eljaezb
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "flights"
+    - - flights
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "flights"
+  lineage:
+    nodes:
+      - id: "0"
+        type: HashingTag
+        label: HashingTag
+        schema:
+          airport: string
+          total_flights: int64
+        tag_metadata:
+          tag: catalog-code
+          code: "source.select(airport=source.origin).union(source.select(airport=source.destination)).group_by(\"airport\").agg(total_flights=ibis._.count()).order_by(ibis.desc(\"total_flights\")).head(2)"
+      - id: "1"
+        type: Limit
+        label: Limit
+        schema:
+          airport: string
+          total_flights: int64
+      - id: "2"
+        type: Sort
+        label: Sort
+        schema:
+          airport: string
+          total_flights: int64
+      - id: "3"
+        type: Aggregate
+        label: Aggregate
+        schema:
+          airport: string
+          total_flights: int64
+      - id: "4"
+        type: SortKey
+        label: SortKey
+      - id: "5"
+        type: Union
+        label: Union
+        schema:
+          airport: string
+      - id: "6"
+        type: Field
+        label: "Field:airport"
+      - id: "7"
+        type: CountStar
+        label: CountStar
+      - id: "8"
+        type: Field
+        label: "Field:total_flights"
+      - id: "9"
+        type: Project
+        label: Project
+        schema:
+          airport: string
+      - id: "10"
+        type: Project
+        label: Project
+        schema:
+          airport: string
+      - id: "11"
+        type: HashingTag
+        label: HashingTag
+        schema:
+          carrier: string
+          origin: string
+          destination: string
+          flight_num: string
+          flight_time: int64
+          tail_num: string
+          dep_time: timestamp(6)
+          arr_time: timestamp(6)
+          dep_delay: int64
+          arr_delay: int64
+          taxi_out: int64
+          taxi_in: int64
+          distance: int64
+          cancelled: string
+          diverted: string
+          id2: int64
+        tag_metadata:
+          tag: catalog-source
+          entry_name: 9f425664259a
+          alias: source-flights
+          kind: source
+      - id: "12"
+        type: Field
+        label: "Field:origin"
+      - id: "13"
+        type: Field
+        label: "Field:destination"
+      - id: "14"
+        type: RemoteTable
+        label: "RemoteTable:ibis_rbr-placeholder_gotjwc3eljaezb"
+        schema:
+          carrier: string
+          origin: string
+          destination: string
+          flight_num: string
+          flight_time: int64
+          tail_num: string
+          dep_time: timestamp(6)
+          arr_time: timestamp(6)
+          dep_delay: int64
+          arr_delay: int64
+          taxi_out: int64
+          taxi_in: int64
+          distance: int64
+          cancelled: string
+          diverted: string
+          id2: int64
+      - id: "15"
+        type: Read
+        label: Read
+        schema:
+          carrier: string
+          origin: string
+          destination: string
+          flight_num: string
+          flight_time: int64
+          tail_num: string
+          dep_time: timestamp(6)
+          arr_time: timestamp(6)
+          dep_delay: int64
+          arr_delay: int64
+          taxi_out: int64
+          taxi_in: int64
+          distance: int64
+          cancelled: string
+          diverted: string
+          id2: int64
+    edges:
+      - - "0"
+        - "1"
+      - - "1"
+        - "2"
+      - - "2"
+        - "3"
+      - - "2"
+        - "4"
+      - - "3"
+        - "5"
+      - - "3"
+        - "6"
+      - - "3"
+        - "7"
+      - - "4"
+        - "8"
+      - - "5"
+        - "9"
+      - - "5"
+        - "10"
+      - - "6"
+        - "5"
+      - - "7"
+        - "5"
+      - - "8"
+        - "3"
+      - - "9"
+        - "11"
+      - - "9"
+        - "12"
+      - - "10"
+        - "11"
+      - - "10"
+        - "13"
+      - - "11"
+        - "14"
+      - - "12"
+        - "11"
+      - - "13"
+        - "11"
+      - - "14"
+        - "15"
+    root: "0"
