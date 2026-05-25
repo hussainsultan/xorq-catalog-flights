@@ -1,0 +1,80 @@
+md5sum: c89f504fd53455f17e5368d9beb9481c
+backends:
+  - xorq_datafusion
+expr_metadata:
+  kind: source
+  schema_out:
+    id: int64
+    tail_num: string
+    aircraft_serial: string
+    aircraft_model_code: string
+    aircraft_engine_code: string
+    year_built: int64
+    aircraft_type_id: int64
+    aircraft_engine_type_id: int64
+    registrant_type_id: int64
+    name: string
+    address1: string
+    address2: string
+    city: string
+    state: string
+    zip: string
+    region: string
+    county: string
+    country: string
+    certification: string
+    status_code: string
+    mode_s_code: string
+    fract_owner: string
+    last_action_date: date
+    cert_issue_date: date
+    air_worth_date: date
+  cache_keys:
+    key: letsql_cache-snapshot-585affdd0dfb30d13725ba3b0256f7da
+    relative_path: parquet
+  sql_queries:
+    - - main
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "aircraft"
+    - - aircraft
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "aircraft"
+  lineage:
+    nodes:
+      - id: "0"
+        type: Read
+        label: Read
+        schema:
+          id: int64
+          tail_num: string
+          aircraft_serial: string
+          aircraft_model_code: string
+          aircraft_engine_code: string
+          year_built: int64
+          aircraft_type_id: int64
+          aircraft_engine_type_id: int64
+          registrant_type_id: int64
+          name: string
+          address1: string
+          address2: string
+          city: string
+          state: string
+          zip: string
+          region: string
+          county: string
+          country: string
+          certification: string
+          status_code: string
+          mode_s_code: string
+          fract_owner: string
+          last_action_date: date
+          cert_issue_date: date
+          air_worth_date: date
+    edges: []
+    root: "0"

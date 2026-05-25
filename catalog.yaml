@@ -2,7 +2,9 @@ entries:
   - e18be60e5983
   - 9f425664259a
   - c9c9976149dd
+  - ccebe6bb966b
 aliases:
   - source-airports
   - source-flights
   - source-carriers
+  - source-aircraft
