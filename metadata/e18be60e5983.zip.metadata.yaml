@@ -1,0 +1,84 @@
+md5sum: 51092f5017241cf55ff05aab0485d140
+backends:
+  - xorq_datafusion
+expr_metadata:
+  kind: source
+  schema_out:
+    id: int64
+    code: string
+    site_number: string
+    fac_type: string
+    fac_use: string
+    faa_region: string
+    faa_dist: string
+    city: string
+    county: string
+    state: string
+    full_name: string
+    own_type: string
+    longitude: float64
+    latitude: float64
+    elevation: int64
+    aero_cht: string
+    cbd_dist: int64
+    cbd_dir: string
+    act_date: string
+    cert: string
+    fed_agree: string
+    cust_intl: string
+    c_ldg_rts: string
+    joint_use: string
+    mil_rts: string
+    cntl_twr: string
+    major: string
+  cache_keys:
+    key: letsql_cache-snapshot-b04115df9496425617087c9cb556055e
+    relative_path: parquet
+  sql_queries:
+    - - main
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "airports"
+    - - airports
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "airports"
+  lineage:
+    nodes:
+      - id: "0"
+        type: Read
+        label: Read
+        schema:
+          id: int64
+          code: string
+          site_number: string
+          fac_type: string
+          fac_use: string
+          faa_region: string
+          faa_dist: string
+          city: string
+          county: string
+          state: string
+          full_name: string
+          own_type: string
+          longitude: float64
+          latitude: float64
+          elevation: int64
+          aero_cht: string
+          cbd_dist: int64
+          cbd_dir: string
+          act_date: string
+          cert: string
+          fed_agree: string
+          cust_intl: string
+          c_ldg_rts: string
+          joint_use: string
+          mil_rts: string
+          cntl_twr: string
+          major: string
+    edges: []
+    root: "0"
