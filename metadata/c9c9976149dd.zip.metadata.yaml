@@ -1,0 +1,45 @@
+md5sum: 6254e0627882396ee41848df3be0b45f
+backends:
+  - xorq_datafusion
+expr_metadata:
+  kind: source
+  schema_out:
+    code: string
+    name: string
+    nickname: string
+  cache_keys:
+    key: letsql_cache-snapshot-bf1d6e0d05b7b7672670d42ee760f283
+    relative_path: parquet
+  sql_queries:
+    - - main
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "carriers"
+    - - carriers
+      - xorq_datafusion
+      - |-
+        SELECT
+          *
+        FROM "carriers"
+  lineage:
+    nodes:
+      - id: "0"
+        type: CachedNode
+        label: "Cache[cache] xorq_cached_node_name_placeholder"
+        schema:
+          code: string
+          name: string
+          nickname: string
+      - id: "1"
+        type: Read
+        label: Read
+        schema:
+          code: string
+          name: string
+          nickname: string
+    edges:
+      - - "0"
+        - "1"
+    root: "0"
